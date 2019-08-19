@@ -1,16 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>User Page</title>
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<form th:action="@{/}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+</form>
 
-<h4 th:text="#{saludo}"></h4>
+<div class="container">
+    <div id="row" class="row">
+        <div class="col-sm-3 text-center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Registrar Cliente</div>
+                <div class="panel-body">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Launch demo modal
+                    </button></div>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Listar Clientes</div>
+                <div class="panel-body">Panel Content</div>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Algo nuevo</div>
+                <div class="panel-body">Panel Content</div>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Algo mas nuevo</div>
+                <div class="panel-body">Panel Content</div>
+            </div>
+        </div>
 
-<p><span th:utext="${userName}"></span></p>
+    </div>
 
-<p><span th:utext="${adminMessage}"></span></p>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><h2>Registration Form</h2></h5>
+
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" action="#" th:action="@{/registration}"
+                          th:object="${user}" method="post" class="form-horizontal"
+                          role="form">
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                       class="validation-message"></label>
+                                <input type="text" th:field="*{name}" placeholder="Name"
+                                       class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                          class="validation-message"></label>
+                                <input type="text" th:field="*{lastName}"
+                                       placeholder="Last Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <input type="text" th:field="*{email}" placeholder="Email"
+                                       class="form-control" /> <label
+                                    th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                    class="validation-message"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <input type="password" th:field="*{password}"
+                                       placeholder="Password" class="form-control" /> <label
+                                    th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                    class="validation-message"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                            </div>
+                        </div>
+
+                        <span th:utext="${successMessage}"></span>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 </body>
 </html>
