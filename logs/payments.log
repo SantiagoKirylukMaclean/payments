@@ -440,3 +440,7 @@
 [2019-08-20T00:41:09.009Z] [org.springframework.boot.StartupInfoLogger] [main] [36m[0;39m[59] [INFO ] Started PaymentsApplication in 8.982 seconds (JVM running for 10.784)
 [2019-08-20T00:41:09.009Z] [ar.tesis.payments.PaymentsApplication] [main] [36m[0;39m[13] [INFO ] testing logging with lombok
 [2019-08-20T00:41:09.009Z] [ar.tesis.payments.PaymentsApplication] [main] [36m[0;39m[14] [ERROR] testing error with lombok
+[2019-08-20T00:43:11.011Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-8080-exec-1] [36m[0;39m[173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-08-20T00:43:11.011Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-8080-exec-1] [36m[0;39m[524] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-08-20T00:43:11.011Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-8080-exec-1] [36m[0;39m[546] [INFO ] Completed initialization in 12 ms
+[2019-08-20T00:43:27.027Z] [org.hibernate.hql.internal.QueryTranslatorFactoryInitiator] [http-nio-8080-exec-6] [36m[0;39m[47] [INFO ] HHH000397: Using ASTQueryTranslatorFactory
