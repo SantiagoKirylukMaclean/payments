@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="footer">
+    <!-- Footer -->
+    <footer class="blue">
+
+        <div class="row">
+            <div class="footer-copyright text-center col-sm-4">
+                © 2019 Copyright:
+                <a href="https://www.linkedin.com/in/santiagokirylukmaclean/"> Santiago Kiryluk Maclean</a>
+            </div>
+            <div class="footer-copyright text-center col-sm-4">
+                Redes Sociales
+            </div>
+            <div class="footer-copyright text-center col-sm-4">
+                <span th:text="#{lang.change}"/>
+                <a th:href="@{/login?lang=es}" class="btn btn-primary btn-xs" role="button"><span th:text="#{lang.es}"/></a>
+                <a th:href="@{/login?lang=en}" class="btn btn-primary btn-xs" role="button"><span th:text="#{lang.en}"/></a>
+                <a th:href="@{/logout}" class="btn btn-danger btn-xs" role="button"><span th:text="#{logout}"/></a>
+            </div>
+        </div>
+
+
+
+    </footer>
