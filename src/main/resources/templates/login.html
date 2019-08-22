@@ -3,8 +3,8 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Payments Login</title>
-    <head th:replace="fragments/header :: head"></head>
+    <title th:text="#{login}"></title>
+    <head th:replace="fragments/head :: head"></head>
 
 </head>
 
@@ -26,11 +26,11 @@
             <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="#{login}"></button>
 
     </form>
 </div>
-<br/>
+
 <div th:replace="fragments/footer :: footer"></div>
 
 </div>

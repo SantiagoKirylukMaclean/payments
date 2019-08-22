@@ -2,137 +2,23 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registration Form</title>
-    <head th:replace="fragments/header :: head"></head>
+    <title th:text="#{home.admin.title}"></title>
+    <head th:replace="fragments/head :: head"></head>
+
+
 </head>
 <body>
-<form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
-</form>
+<div class="header"></div>
+
+<div th:replace="fragments/header :: nav"></div>
+
 
 <div class="container">
-    <div id="row" class="row">
-        <div class="col-sm-3 text-center">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Registrar Cliente</div>
-                <div class="panel-body">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        Registrar
-                    </button></div>
-            </div>
-        </div>
-        <div class="col-sm-3 text-center">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Listar Clientes</div>
-                <div class="panel-body">Panel Content</div>
-            </div>
-        </div>
-        <div class="col-sm-3 text-center">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Algo nuevo</div>
-                <div class="panel-body">Panel Content</div>
-            </div>
-        </div>
-        <div class="col-sm-3 text-center">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Algo mas nuevo</div>
-                <div class="panel-body">Panel Content</div>
-            </div>
-        </div>
 
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><h2>Registration Form</h2></h5>
-
-                </div>
-                <div class="modal-body">
-                    <form autocomplete="off" action="#" th:action="@{/registration}"
-                          th:object="${user}" method="post" class="form-horizontal"
-                          role="form">
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                                       class="validation-message"></label>
-                                <input type="text" th:field="*{name}" placeholder="Name"
-                                       class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-                                          class="validation-message"></label>
-                                <input type="text" th:field="*{lastName}"
-                                       placeholder="Last Name" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <input type="text" th:field="*{email}" placeholder="Email"
-                                       class="form-control" /> <label
-                                    th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                                    class="validation-message"></label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <input type="password" th:field="*{password}"
-                                       placeholder="Password" class="form-control" /> <label
-                                    th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                                    class="validation-message"></label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <button type="submit" class="btn btn-primary btn-block">Register User</button>
-                            </div>
-                        </div>
-
-                        <span th:utext="${successMessage}"></span>
-
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <img th:src="@{../images/paymentsAdmin.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
 
 </div>
-<br/>
-<div class="footer">
-    <!-- Footer -->
-    <footer class="blue">
-
-        <div class="row">
-            <div class="footer-copyright text-center col-sm-4">
-                © 2019 Copyright:
-                <a href="https://www.linkedin.com/in/santiagokirylukmaclean/"> Santiago Kiryluk Maclean</a>
-            </div>
-            <div class="footer-copyright text-center col-sm-4">
-                Redes Sociales
-            </div>
-            <div class="footer-copyright text-center col-sm-4">
-                <span th:text="#{lang.change}"/>
-                <a th:href="@{/login?lang=es}" class="btn btn-primary btn-xs" role="button"><span th:text="#{lang.es}"/></a>
-                <a th:href="@{/login?lang=en}" class="btn btn-primary btn-xs" role="button"><span th:text="#{lang.en}"/></a>
-            </div>
-        </div>
-
-
-
-    </footer>
-    <!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
 </div>
 
 </body>
