@@ -45,6 +45,11 @@ input[type="password"] {
     color: #004080;
 }
 
-.blue{
-    background-color: #17A9B6;
+.footer-black{
+    background-color: #222222;
+}
+
+.footer-copyright{
+    color: #9d9d9d;
+    margin-top: 20px;
 }

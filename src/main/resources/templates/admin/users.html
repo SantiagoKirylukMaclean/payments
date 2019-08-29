@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{home.admin.title}"></title>
+    <head th:replace="fragments/head :: head"></head>
+
+
+</head>
+<body>
+<div class="header"></div>
+
+<div th:replace="fragments/header :: nav"></div>
+
+
+<div class="container">
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.getName()}" />
+            <td th:text="${user.getLastName()}" />
+            <td th:text="${user.getEmail()}" />
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
