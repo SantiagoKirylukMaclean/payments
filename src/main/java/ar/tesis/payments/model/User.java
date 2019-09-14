@@ -24,6 +24,11 @@ public class User {
     @Column(name = "user_id")
     private int id;
 
+    @Column(name = "username")
+    @Length(min = 5, message = "*Your username must have at least 5 facking characters")
+    @NotEmpty(message = "*Please provide an username")
+    private String username;
+
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")

@@ -19,16 +19,20 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th scope="col">Usuario</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Email</th>
+            <th scope="col">Activo</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user: ${users}">
+            <td th:text="${user.getUsername()}" />
             <td th:text="${user.getName()}" />
             <td th:text="${user.getLastName()}" />
             <td th:text="${user.getEmail()}" />
+            <td th:text="${user.getActive()}" />
         </tr>
         </tbody>
     </table>
