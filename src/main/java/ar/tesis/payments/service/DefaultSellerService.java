@@ -37,10 +37,7 @@ public class DefaultSellerService implements SellerServiceInterface {
     }
 
     public void updateSeller(Seller seller){
-        //seller.setPassword(bCryptPasswordEncoder.encode(seller.getPassword()));
-        //seller.setActive(1);
-        //Role userRole = roleRepository.findByRole("ROLE_USER");
-        //seller.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        if (seller.getMarket() != null && seller.getConfiguracion() != null) seller.setStatus((byte)1);
         sellerRepository.save(seller);
     }
 

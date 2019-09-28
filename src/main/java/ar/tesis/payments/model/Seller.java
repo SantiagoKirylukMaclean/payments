@@ -55,6 +55,9 @@ public class Seller {
     @Column(name = "active")
     private int active;
 
+    @Column(name = "status")
+    private byte status;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
