@@ -35,4 +35,7 @@ public class Market {
     @NotEmpty(message = "*Please provide your categoriaMercante")
     private String categoriaMercante;
 
+    @OneToOne(mappedBy = "market")
+    private Seller seller;
+
 }

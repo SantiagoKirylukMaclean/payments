@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Data
 @Entity
@@ -42,18 +43,32 @@ public class Seller {
     @NotEmpty(message = "*Please provide an email")
     private String email;
 
-    @Column(name = "Contrasena")
+    @Column(name = "username")
+    @NotEmpty(message = "*Please provide an username")
+    private String username;
+
+    @Column(name = "password")
     @Length(min = 5, message = "*Your password must have at least 5 characters")
-    @NotEmpty(message = "*Please provide your Contrasena")
-    private String Contrasena;
+    @NotEmpty(message = "*Please provide your password")
+    private String password;
 
     @Column(name = "active")
     private int active;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "market_id", referencedColumnName = "market_id")
     private Market market;
 
+    @ManyToOne
+    @JoinColumn(name="servicio_id", nullable=false)
     private Servicio servicio;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "configuracion_id", referencedColumnName = "configuracion_id")
     private Configuracion configuracion;
 
 

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{home.admin.title}"></title>
+    <head th:replace="fragments/head :: head"></head>
+
+
+</head>
+<body>
+<div class="header"></div>
+
+<div th:replace="fragments/headerUser :: nav"></div>
+
+
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col" th:text="#{home.admin.registry.client.register.name}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.lastName}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.cuit}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.address}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.email}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.entity}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.market}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.service}"></th>
+            <th scope="col" th:text="#{home.admin.registry.client.register.configuration}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="seller: ${seller}">
+            <td th:text="${seller.getNombre()}" />
+            <td th:text="${seller.getApellido()}" />
+            <td th:text="${seller.getCuit()}" />
+            <td th:text="${seller.getDireccion()}" />
+            <td th:text="${seller.getEmail()}" />
+            <td th:text="${seller.getRazonSocial()}" />
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editMarketModal">
+                    Editar
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miServicioModal">
+                    Ver
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editConfiguracionModal">
+                    Editar
+                </button>
+            </td>
+
+
+        </tr>
+
+        </tbody>
+    </table>
+    <span th:utext="${successMessage}"></span>
+
+    <!-- Mi Market Modal -->
+    <div class="modal fade" id="miMarketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Mi Market</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">URL</th>
+                            <th scope="col">Codigo Pais</th>
+                            <th scope="col">Categoria Mercante</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="sellerMarket: ${seller.getMarket()}">
+                            <td th:text="${sellerMarket.getNombre()}" />
+                            <td th:text="${sellerMarket.getTelefono()}" />
+                            <td th:text="${sellerMarket.getURL()}" />
+                            <td th:text="${sellerMarket.getCodigoPais()}" />
+                            <td th:text="${sellerMarket.getCategoriaMercante()}" />
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit Market Modal -->
+    <div class="modal fade" id="editConfiguracionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Mi Market</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form autocomplete="off" action="#" th:action="@{/configuracion}"
+                                  th:object="${configuracion}" method="post" class="form-horizontal"
+                                  role="form">
+
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <label th:text="Market"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('cantidadRecordarCompraAbandonada')}" th:errors="*{cantidadRecordarCompraAbandonada}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.name}"
+                                               th:field="*{cantidadRecordarCompraAbandonada}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('codigoTelefonoNoOk')}" th:errors="*{codigoTelefonoNoOk}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.lastName}"
+                                               th:field="*{codigoTelefonoNoOk}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('codigoTelefonoOk')}" th:errors="*{codigoTelefonoOk}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.entity}"
+                                               th:field="*{codigoTelefonoOk}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('mensajeBienvenida')}" th:errors="*{mensajeBienvenida}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.cuit}"
+                                               th:field="*{mensajeBienvenida}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('postConfirmacion')}" th:errors="*{postConfirmacion}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.address}"
+                                               th:field="*{postConfirmacion}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('preConfirmacion')}" th:errors="*{preConfirmacion}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.address}"
+                                               th:field="*{preConfirmacion}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('tipoProcesamiento')}" th:errors="*{tipoProcesamiento}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.address}"
+                                               th:field="*{tipoProcesamiento}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('URLNoOk')}" th:errors="*{URLNoOk}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.address}"
+                                               th:field="*{URLNoOk}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('URLOk')}" th:errors="*{URLOk}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.address}"
+                                               th:field="*{URLOk}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-primary btn-block"
+                                                th:text="#{home.admin.registry.client.register.confirm}"></button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mi miConfiguraicionModal Modal -->
+    <div class="modal fade" id="miConfiguracionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Mi Market</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">cantidadRecordarCompraAbandonada</th>
+                            <th scope="col">codigoTelefonoNoOk</th>
+                            <th scope="col">codigoTelefonoOk</th>
+                            <th scope="col">mensajeBienvenida</th>
+                            <th scope="col">postConfirmacion</th>
+                            <th scope="col">preConfirmacion</th>
+                            <th scope="col">tipoProcesamiento</th>
+                            <th scope="col">URLNoOk</th>
+                            <th scope="col">URLOk</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="sellerConfiguracion: ${seller.getConfiguracion()}">
+                            <td th:text="${sellerConfiguracion.getCantidadRecordarCompraAbandonada()}" />
+                            <td th:text="${sellerConfiguracion.getCodigoTelefonoNoOk()}" />
+                            <td th:text="${sellerConfiguracion.getCodigoTelefonoOk()}" />
+                            <td th:text="${sellerConfiguracion.getMensajeBienvenida()}" />
+                            <td th:text="${sellerConfiguracion.getPostConfirmacion()}" />
+                            <td th:text="${sellerConfiguracion.getPreConfirmacion()}" />
+                            <td th:text="${sellerConfiguracion.getTipoProcesamiento()}" />
+                            <td th:text="${sellerConfiguracion.getURLNoOk()}" />
+                            <td th:text="${sellerConfiguracion.getURLOk()}" />
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mi Market Modal -->
+    <div class="modal fade" id="miServicioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Mi Market</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Costo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="sellerServicio: ${seller.getServicio()}">
+                            <td th:text="${sellerServicio.getDescripcion()}" />
+                            <td th:text="${sellerServicio.getCosto()}" />
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit Market Modal -->
+    <div class="modal fade" id="editMarketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Mi Market</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form autocomplete="off" action="#" th:action="@{/market}"
+                                  th:object="${market}" method="post" class="form-horizontal"
+                                  role="form">
+
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <label th:text="Market"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.name}"
+                                               th:field="*{nombre}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.lastName}"
+                                               th:field="*{telefono}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('URL')}" th:errors="*{URL}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.entity}"
+                                               th:field="*{URL}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('codigoPais')}" th:errors="*{codigoPais}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.cuit}"
+                                               th:field="*{codigoPais}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:if="${#fields.hasErrors('categoriaMercante')}" th:errors="*{categoriaMercante}"
+                                               class="validation-message"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.address}"
+                                               th:field="*{categoriaMercante}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-primary btn-block"
+                                                th:text="#{home.admin.registry.client.register.confirm}"></button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

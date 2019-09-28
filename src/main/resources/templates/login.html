@@ -27,9 +27,135 @@
         </div>
 
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="#{login}"></button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Launch demo modal
+        </button>
+        <span th:utext="${successMessage}"></span>
         <a th:href="@{/registration}" th:text="#{home.admin.registry.client.register.menu}"/>
 
     </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" action="#" th:action="@{/registration}"
+                          th:object="${seller}" method="post" class="form-horizontal"
+                          role="form">
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label th:text="#{home.admin.registry.client.register.title}"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+                                       class="validation-message"></label>
+                                <input type="text" th:placeholder="#{home.admin.registry.client.register.name}"
+                                       th:field="*{nombre}" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"
+                                       class="validation-message"></label>
+                                <input type="text" th:placeholder="#{home.admin.registry.client.register.lastName}"
+                                       th:field="*{apellido}" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"
+                                       class="validation-message"></label>
+                                <input type="text" th:placeholder="#{home.admin.registry.client.register.entity}"
+                                       th:field="*{razonSocial}" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label th:if="${#fields.hasErrors('cuit')}" th:errors="*{cuit}"
+                                       class="validation-message"></label>
+                                <input type="text" th:placeholder="#{home.admin.registry.client.register.cuit}"
+                                       th:field="*{cuit}" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"
+                                       class="validation-message"></label>
+                                <input type="text" th:placeholder="#{home.admin.registry.client.register.address}"
+                                       th:field="*{direccion}" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <select th:field="*{servicio}">
+                                    <option th:each="service : ${servicios}"
+                                            th:value="${service.getId()}"
+                                            th:utext="${service.getCosto()}"/>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="text" th:field="*{email}" th:placeholder="#{home.admin.registry.client.register.email}"
+                                       class="form-control" /> <label
+                                    th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                    class="validation-message"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                       class="validation-message"></label>
+                                <input type="text" th:placeholder="#{home.admin.registry.client.register.username}"
+                                       th:field="*{username}" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="password" th:field="*{password}"
+                                       th:placeholder="#{home.admin.registry.client.register.password}" class="form-control" />
+                                <label
+                                        th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                        class="validation-message"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn btn-primary btn-block"
+                                        th:text="#{home.admin.registry.client.register.confirm}"></button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

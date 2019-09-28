@@ -20,4 +20,6 @@ public class Role {
     private int id;
     @Column(name = "role")
     private String role;
+
+
 }

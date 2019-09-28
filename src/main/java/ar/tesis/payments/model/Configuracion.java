@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -17,7 +18,7 @@ public class Configuracion {
     private int id;
 
     @Column(name = "cantidadRecordarCompraAbandonada")
-    @NotEmpty(message = "*Please provide your cantidadRecordarCompraAbandonada")
+    @NotNull(message = "*Please provide your cantidadRecordarCompraAbandonada")
     private byte cantidadRecordarCompraAbandonada;
 
     @Column(name = "codigoTelefonoNoOk")
@@ -33,11 +34,11 @@ public class Configuracion {
     private String mensajeBienvenida;
 
     @Column(name = "postConfirmacion")
-    @NotEmpty(message = "*Please provide your postConfirmacion")
+    @NotNull(message = "*Please provide your postConfirmacion")
     private byte postConfirmacion;
 
     @Column(name = "preConfirmacion")
-    @NotEmpty(message = "*Please provide your preConfirmacion")
+    @NotNull(message = "*Please provide your preConfirmacion")
     private byte preConfirmacion;
 
     @Column(name = "tipoProcesamiento")
@@ -51,4 +52,7 @@ public class Configuracion {
     @Column(name = "URLOk")
     @NotEmpty(message = "*Please provide your URLOk")
     private String URLOk;
+
+    @OneToOne(mappedBy = "configuracion")
+    private Seller seller;
 }
