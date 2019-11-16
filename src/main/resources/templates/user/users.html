@@ -75,7 +75,7 @@
                         <div class="col-md-6">
                             <form autocomplete="off" action="#" th:action="@{/market}"
                                   th:object="${market}" method="post" class="form-horizontal"
-                                  role="form">
+                                  role="form" id="marketForm">
 
                                 <div class="form-group">
                                     <div class="col-sm-9">
@@ -85,10 +85,12 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
+
                                         <label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.admin.registry.client.register.name}"></label>
                                         <input type="text" th:placeholder="#{home.admin.registry.client.register.name}"
-                                               th:field="*{nombre}" class="form-control" />
+                                               th:field="*{nombre}" class="form-control" id="marketName"/>
                                     </div>
                                 </div>
 
@@ -96,8 +98,9 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.market.phone}"></label>
                                         <input type="text" th:placeholder="#{home.seller.market.phone}"
-                                               th:field="*{telefono}" class="form-control" />
+                                               th:field="*{telefono}" class="form-control" id="marketTelefono"/>
                                     </div>
                                 </div>
 
@@ -105,8 +108,9 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('URL')}" th:errors="*{URL}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.market.url}"></label>
                                         <input type="text" th:placeholder="#{home.seller.market.url}"
-                                               th:field="*{URL}" class="form-control" />
+                                               th:field="*{URL}" class="form-control" id="marketUrl"/>
                                     </div>
                                 </div>
 
@@ -114,8 +118,9 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('codigoPais')}" th:errors="*{codigoPais}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.market.countryCode}"></label>
                                         <input type="text" th:placeholder="#{home.seller.market.countryCode}"
-                                               th:field="*{codigoPais}" class="form-control" />
+                                               th:field="*{codigoPais}" class="form-control" id="marketCountryCode"/>
                                     </div>
                                 </div>
 
@@ -123,15 +128,17 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('categoriaMercante')}" th:errors="*{categoriaMercante}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.market.merchantCategory}"></label>
                                         <input type="text" th:placeholder="#{home.seller.market.merchantCategory}"
-                                               th:field="*{categoriaMercante}" class="form-control" />
+                                               th:field="*{categoriaMercante}" class="form-control" id="marketMerchantCategory"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <button type="submit" class="btn btn-primary"
-                                                th:text="#{home.admin.registry.client.register.confirm}"></button>
+                                                th:text="#{home.admin.registry.client.register.confirm}"
+                                                onclick="validMarket();return false"></button>
                                     </div>
                                     <div class="col-sm-3">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -197,6 +204,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('cantidadRecordarCompraAbandonada')}" th:errors="*{cantidadRecordarCompraAbandonada}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.cantidadRecordarCompraAbandonada}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.cantidadRecordarCompraAbandonada}"
                                                th:field="*{cantidadRecordarCompraAbandonada}" class="form-control" />
                                     </div>
@@ -206,6 +214,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('codigoTelefonoNoOk')}" th:errors="*{codigoTelefonoNoOk}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.phoneCodeNook}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.phoneCodeNook}"
                                                th:field="*{codigoTelefonoNoOk}" class="form-control" />
                                     </div>
@@ -215,6 +224,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('codigoTelefonoOk')}" th:errors="*{codigoTelefonoOk}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.phoneCodeOk}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.phoneCodeOk}"
                                                th:field="*{codigoTelefonoOk}" class="form-control" />
                                     </div>
@@ -224,6 +234,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('mensajeBienvenida')}" th:errors="*{mensajeBienvenida}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.wellcomeMessage}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.wellcomeMessage}"
                                                th:field="*{mensajeBienvenida}" class="form-control" />
                                     </div>
@@ -233,6 +244,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('postConfirmacion')}" th:errors="*{postConfirmacion}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.postConfirmation}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.postConfirmation}"
                                                th:field="*{postConfirmacion}" class="form-control" />
                                     </div>
@@ -242,6 +254,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('preConfirmacion')}" th:errors="*{preConfirmacion}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.preConfirmation}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.preConfirmation}"
                                                th:field="*{preConfirmacion}" class="form-control" />
                                     </div>
@@ -251,6 +264,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('tipoProcesamiento')}" th:errors="*{tipoProcesamiento}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.processTipe}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.processTipe}"
                                                th:field="*{tipoProcesamiento}" class="form-control" />
                                     </div>
@@ -260,6 +274,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('URLNoOk')}" th:errors="*{URLNoOk}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.URLNoOk}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.URLNoOk}"
                                                th:field="*{URLNoOk}" class="form-control" />
                                     </div>
@@ -269,6 +284,7 @@
                                     <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('URLOk')}" th:errors="*{URLOk}"
                                                class="validation-message"></label>
+                                        <label th:text="#{home.seller.configuracion.URLOk}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.URLOk}"
                                                th:field="*{URLOk}" class="form-control" />
                                     </div>
@@ -308,6 +324,20 @@
 
 </div>
 <div th:replace="fragments/footer :: footer"></div>
+<script>
+    function validMarket() {
 
+        if (document.getElementById("marketName").value == "" ||
+            document.getElementById("marketTelefono").value == "" ||
+            document.getElementById("marketUrl").value == "" ||
+            document.getElementById("marketCountryCode").value == "" ||
+            document.getElementById("marketMerchantCategory").value == ""){
+            alert("Debe ingresar todos los valores.");
+        } else {
+            document.getElementById("marketForm").submit();
+        }
+    }
+
+</script>
 </body>
 </html>

@@ -74,7 +74,8 @@ public class Seller {
     @JoinColumn(name = "configuracion_id", referencedColumnName = "configuracion_id")
     private Configuracion configuracion;
 
-
+    @OneToMany(mappedBy = "seller")
+    private Set<Transaction> transaction;
     
 
 }

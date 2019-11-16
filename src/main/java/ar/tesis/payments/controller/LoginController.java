@@ -21,7 +21,7 @@ public class LoginController {
 
     @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
-        ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = new ModelAndView();
         Seller seller = new Seller();
         List<Servicio> servicios = servicioServiceInterface.getServices();
 
