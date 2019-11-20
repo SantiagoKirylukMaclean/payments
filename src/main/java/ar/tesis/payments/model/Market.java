@@ -1,12 +1,14 @@
 package ar.tesis.payments.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
+@ToString
 @Table(name = "market")
 public class Market {
 

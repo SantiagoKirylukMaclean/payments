@@ -1,15 +1,19 @@
 package ar.tesis.payments.model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @Entity
+@ToString
 @Table(name = "seller")
 public class Seller {
 
@@ -76,6 +80,9 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller")
     private Set<Transaction> transaction;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<Descuento> descuento = new ArrayList<>();
     
 
 }

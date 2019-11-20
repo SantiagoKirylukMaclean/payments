@@ -1,13 +1,7 @@
 package ar.tesis.payments.controller;
 
-import ar.tesis.payments.model.Configuracion;
-import ar.tesis.payments.model.Market;
-import ar.tesis.payments.model.Seller;
-import ar.tesis.payments.model.Servicio;
-import ar.tesis.payments.service.ConfiguracionServiceInterface;
-import ar.tesis.payments.service.MarketServiceInterface;
-import ar.tesis.payments.service.SellerServiceInterface;
-import ar.tesis.payments.service.ServicioServiceInterface;
+import ar.tesis.payments.model.*;
+import ar.tesis.payments.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -32,6 +28,9 @@ public class SellerController {
 
     @Autowired
     private ConfiguracionServiceInterface configuracionServiceInterface;
+
+    @Autowired
+    private DescuentoServiceInterface descuentoServiceInterface;
 
     @RequestMapping(value="/seller", method = RequestMethod.GET)
     public ModelAndView getSeller(){
@@ -53,6 +52,8 @@ public class SellerController {
         modelAndView.setViewName("user/users");
         return modelAndView;
     }
+
+
 
 
 }

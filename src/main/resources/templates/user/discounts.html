@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{home.admin.title}"></title>
+    <head th:replace="fragments/head :: head"></head>
+
+
+</head>
+<body>
+<div class="header"></div>
+
+<div th:replace="fragments/headerUser :: nav"></div>
+
+
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col" th:text="#{home.seller.discount.id}"></th>
+            <th scope="col" th:text="#{home.seller.discount.description}"></th>
+            <th scope="col" th:text="#{home.seller.discount.discount}"></th>
+            <th scope="col" th:text="#{home.seller.discount.creditCard}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="descuento: ${descuento}">
+            <td th:text="${descuento.getId()}" />
+            <td th:text="${descuento.getDescripcion()}" />
+            <td th:text="${descuento.getTarjetaCredito()}" />
+            <td th:text="${descuento.getDescuento()}" />
+
+        </tr>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDiscountModal">
+            Editar
+        </button>
+        </tbody>
+    </table>
+
+    <!-- editMarketModalModal -->
+    <div class="modal fade" id="editDiscountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form autocomplete="off" action="#" th:action="@{/descuento}"
+                                  th:object="${descuento2}" method="post" class="form-horizontal"
+                                  role="form" id="marketForm">
+
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <label th:text="Market"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+
+                                        <label th:text="#{home.admin.registry.client.register.name}"></label>
+                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.name}"
+                                               th:field="*{descripcion}" class="form-control" id="marketName"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:text="#{home.seller.market.phone}"></label>
+                                        <input type="text" th:placeholder="#{home.seller.market.phone}"
+                                               th:field="*{tarjetaCredito}" class="form-control" id="marketTelefono"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label th:text="#{home.seller.market.url}"></label>
+                                        <input type="text" th:placeholder="#{home.seller.market.url}"
+                                               th:field="*{descuento}" class="form-control" id="marketUrl"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-primary"
+                                                th:text="#{home.admin.registry.client.register.confirm}"
+                                                onclick="validDiscount();return false"></button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <span th:utext="${successMessage}"></span>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<script>
+    function validDiscount() {
+
+        /if (document.getElementById("marketName").value == "" ||
+        /    document.getElementById("marketTelefono").value == "" ||
+        /    document.getElementById("marketUrl").value == "" ||
+        /    document.getElementById("marketCountryCode").value == "" ||
+        /    document.getElementById("marketMerchantCategory").value == ""){
+        /    alert("Debe ingresar todos los valores.");
+        /} else {
+            document.getElementById("marketForm").submit();
+        /}
+    }
+
+</script>
+</body>
+</html>
