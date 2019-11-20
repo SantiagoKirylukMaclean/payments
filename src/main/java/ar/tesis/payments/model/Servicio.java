@@ -24,6 +24,10 @@ public class Servicio {
     @NotEmpty(message = "*Please provide your costo")
     private Double costo;
 
+    @Column(name = "costo_transaccion")
+    @NotEmpty(message = "*Please provide your costo de transaccion")
+    private Double costoTransaccion;
+
     @OneToMany(mappedBy = "servicio")
     private Set<Seller> seller;
 

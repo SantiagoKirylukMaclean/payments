@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -13,18 +14,19 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "transaction_id")
-    private int id;
+    private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "seller_id", nullable = false)
-    private Seller seller;
+    //Borrar de aca
+    //@ManyToOne
+    //@JoinColumn(name = "seller_id", nullable = false)
+    //private Seller seller;
 
     @Column(name = "mailComprador")
     @NotEmpty(message = "*Please provide your mail")
     private String mailComprador;
 
     @Column(name = "monto")
-    @NotEmpty(message = "*Please provide your monto")
+    @NotNull(message = "*Please provide your monto")
     private Double monto;
 
     @Column(name = "tarjeta_credito")

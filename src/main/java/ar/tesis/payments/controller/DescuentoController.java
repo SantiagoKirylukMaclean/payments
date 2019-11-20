@@ -54,7 +54,7 @@ public class DescuentoController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Seller seller = sellerServiceInterface.findSellerByUserName(auth.getName());
-        List<Descuento> descuentos = seller.getDescuento() == null ? new ArrayList<Descuento>() : seller.getDescuento();
+        Set<Descuento> descuentos = seller.getDescuento() == null ? new HashSet<>() : seller.getDescuento();
         descuentos.add(descuento);
         seller.setDescuento(descuentos);
         sellerServiceInterface.updateSeller(seller);
