@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,7 +45,11 @@ public class BillingController {
 
         }
 
-        modelAndView.addObject("transacciones", seller.getTransaction() == null ? new ArrayList<Transaction>() : seller.getTransaction());
+        modelAndView.addObject("transacciones", seller.getTransaction() == null
+                ? new ArrayList<Transaction>()
+                : seller.getTransaction()
+                .stream().sorted(Comparator.comparing(Transaction::getEstado).reversed())
+                .collect(Collectors.toList()));
         modelAndView.addObject("facturacion", seller.getTransaction()
                 .stream()
                 .filter(trx -> trx.getEstado() == 2 )

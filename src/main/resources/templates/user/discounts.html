@@ -20,8 +20,8 @@
         <tr>
             <th scope="col" th:text="#{home.seller.discount.id}"></th>
             <th scope="col" th:text="#{home.seller.discount.description}"></th>
-            <th scope="col" th:text="#{home.seller.discount.discount}"></th>
             <th scope="col" th:text="#{home.seller.discount.creditCard}"></th>
+            <th scope="col" th:text="#{home.seller.discount.discount}"></th>
         </tr>
         </thead>
         <tbody>
@@ -58,25 +58,26 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
 
-                                        <label th:text="#{home.admin.registry.client.register.name}"></label>
-                                        <input type="text" th:placeholder="#{home.admin.registry.client.register.name}"
-                                               th:field="*{descripcion}" class="form-control" id="marketName"/>
+                                        <label th:text="#{home.seller.discount.description}"></label>
+                                        <input type="text" th:placeholder="#{home.seller.discount.description}"
+                                               th:field="*{descripcion}" class="form-control" id="descripcion"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <label th:text="#{home.seller.market.phone}"></label>
-                                        <input type="text" th:placeholder="#{home.seller.market.phone}"
-                                               th:field="*{tarjetaCredito}" class="form-control" id="marketTelefono"/>
+                                        <label th:text="#{home.seller.discount.creditCard}"></label>
+                                        <input type="text" th:placeholder="#{home.seller.discount.creditCard}"
+                                               th:field="*{tarjetaCredito}" class="form-control" id="creditCard"/>
                                     </div>
                                 </div>
 
+
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <label th:text="#{home.seller.market.url}"></label>
-                                        <input type="text" th:placeholder="#{home.seller.market.url}"
-                                               th:field="*{descuento}" class="form-control" id="marketUrl"/>
+                                        <label th:text="#{home.seller.discount.discount}"></label>
+                                        <input type="text" th:placeholder="#{home.seller.discount.discount}"
+                                               th:field="*{descuento}" class="form-control" id="discount"/>
                                     </div>
                                 </div>
 
@@ -86,6 +87,7 @@
                                                 th:text="#{home.admin.registry.client.register.confirm}"
                                                 onclick="validDiscount();return false"></button>
                                     </div>
+                                    <span>   </span>
                                     <div class="col-sm-3">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                     </div>
@@ -107,15 +109,13 @@
 <script>
     function validDiscount() {
 
-        /if (document.getElementById("marketName").value == "" ||
-        /    document.getElementById("marketTelefono").value == "" ||
-        /    document.getElementById("marketUrl").value == "" ||
-        /    document.getElementById("marketCountryCode").value == "" ||
-        /    document.getElementById("marketMerchantCategory").value == ""){
-        /    alert("Debe ingresar todos los valores.");
-        /} else {
+        if (document.getElementById("creditCard").value == "" ||
+            document.getElementById("discount").value == "" ||
+            document.getElementById("descripcion").value == ""){
+            alert("Debe ingresar todos los valores.");
+        } else {
             document.getElementById("marketForm").submit();
-        /}
+        }
     }
 
 </script>

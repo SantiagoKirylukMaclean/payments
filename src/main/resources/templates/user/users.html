@@ -192,7 +192,7 @@
                         <div class="col-md-6">
                             <form autocomplete="off" action="#" th:action="@{/configuracion}"
                                   th:object="${configuracion}" method="post" class="form-horizontal"
-                                  role="form">
+                                  role="form" id="configuracionForm">
 
                                 <div class="form-group">
                                     <div class="col-sm-9">
@@ -206,7 +206,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.cantidadRecordarCompraAbandonada}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.cantidadRecordarCompraAbandonada}"
-                                               th:field="*{cantidadRecordarCompraAbandonada}" class="form-control" />
+                                               th:field="*{cantidadRecordarCompraAbandonada}" class="form-control" id="recuperarCompra"/>
                                     </div>
                                 </div>
 
@@ -216,7 +216,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.phoneCodeNook}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.phoneCodeNook}"
-                                               th:field="*{codigoTelefonoNoOk}" class="form-control" />
+                                               th:field="*{codigoTelefonoNoOk}" class="form-control" id="phoneCodeNoOk"/>
                                     </div>
                                 </div>
 
@@ -226,7 +226,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.phoneCodeOk}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.phoneCodeOk}"
-                                               th:field="*{codigoTelefonoOk}" class="form-control" />
+                                               th:field="*{codigoTelefonoOk}" class="form-control" id="phoneCodeOk"/>
                                     </div>
                                 </div>
 
@@ -236,7 +236,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.wellcomeMessage}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.wellcomeMessage}"
-                                               th:field="*{mensajeBienvenida}" class="form-control" />
+                                               th:field="*{mensajeBienvenida}" class="form-control" id="bienvenida"/>
                                     </div>
                                 </div>
 
@@ -246,7 +246,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.postConfirmation}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.postConfirmation}"
-                                               th:field="*{postConfirmacion}" class="form-control" />
+                                               th:field="*{postConfirmacion}" class="form-control" id="postConfirmation"/>
                                     </div>
                                 </div>
 
@@ -256,7 +256,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.preConfirmation}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.preConfirmation}"
-                                               th:field="*{preConfirmacion}" class="form-control" />
+                                               th:field="*{preConfirmacion}" class="form-control" id="preConfirmation"/>
                                     </div>
                                 </div>
 
@@ -266,7 +266,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.processTipe}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.processTipe}"
-                                               th:field="*{tipoProcesamiento}" class="form-control" />
+                                               th:field="*{tipoProcesamiento}" class="form-control" id="processTipe"/>
                                     </div>
                                 </div>
 
@@ -276,7 +276,7 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.URLNoOk}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.URLNoOk}"
-                                               th:field="*{URLNoOk}" class="form-control" />
+                                               th:field="*{URLNoOk}" class="form-control" id="URLNoOk"/>
                                     </div>
                                 </div>
 
@@ -286,14 +286,15 @@
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.URLOk}"></label>
                                         <input type="text" th:placeholder="#{home.seller.configuracion.URLOk}"
-                                               th:field="*{URLOk}" class="form-control" />
+                                               th:field="*{URLOk}" class="form-control" id="URLOk"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <button type="submit" class="btn btn-primary"
-                                                th:text="#{home.admin.registry.client.register.confirm}"></button>
+                                                th:text="#{home.admin.registry.client.register.confirm}"
+                                                onclick="validConfiguracion();return false"></button>
                                     </div>
                                     <div class="col-sm-3">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -335,6 +336,23 @@
             alert("Debe ingresar todos los valores.");
         } else {
             document.getElementById("marketForm").submit();
+        }
+    }
+
+    function validConfiguracion() {
+
+        if (document.getElementById("recuperarCompra").value == "" ||
+            document.getElementById("phoneCodeNoOk").value == "" ||
+            document.getElementById("phoneCodeOk").value == "" ||
+            document.getElementById("postConfirmation").value == "" ||
+            document.getElementById("preConfirmation").value == "" ||
+            document.getElementById("processTipe").value == "" ||
+            document.getElementById("URLNoOk").value == "" ||
+            document.getElementById("bienvenida").value == "" ||
+            document.getElementById("URLOk").value == "" ){
+            alert("Debe ingresar todos los valores.");
+        } else {
+            document.getElementById("configuracionForm").submit();
         }
     }
 

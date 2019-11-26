@@ -19,9 +19,9 @@
         <thead>
         <tr>
             <th scope="col" th:text="#{home.seller.billing.id}"></th>
-            <th scope="col" th:text="#{home.seller.billing.quotes}"></th>
             <th scope="col" th:text="#{home.seller.billing.state}"></th>
             <th scope="col" th:text="#{home.seller.billing.emailBuyer}"></th>
+            <th scope="col" th:text="#{home.seller.billing.quotes}"></th>
             <th scope="col" th:text="#{home.seller.billing.amount}">
             <th scope="col" th:text="#{home.seller.billing.creditCard}"></th>
         </tr>
@@ -29,9 +29,12 @@
         <tbody>
         <tr th:each="transacciones: ${transacciones}">
             <td th:text="${transacciones.getId()}" />
-            <td th:text="${transacciones.getCuotas()}" />
-            <td th:text="${transacciones.getEstado()}" />
+            <td>
+                <span th:if="${transacciones.getEstado() == 1}" th:text="Iniciada"/>
+                <span th:if="${transacciones.getEstado() == 2}" th:text="Confirmada"/>
+            </td>
             <td th:text="${transacciones.getMailComprador()}" />
+            <td th:text="${transacciones.getCuotas()}" />
             <td th:text="${transacciones.getMonto()}" />
             <td th:text="${transacciones.getTarjetaCredito()}" />
 
