@@ -242,26 +242,6 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <label th:if="${#fields.hasErrors('postConfirmacion')}" th:errors="*{postConfirmacion}"
-                                               class="validation-message"></label>
-                                        <label th:text="#{home.seller.configuracion.postConfirmation}"></label>
-                                        <input type="text" th:placeholder="#{home.seller.configuracion.postConfirmation}"
-                                               th:field="*{postConfirmacion}" class="form-control" id="postConfirmation"/>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <label th:if="${#fields.hasErrors('preConfirmacion')}" th:errors="*{preConfirmacion}"
-                                               class="validation-message"></label>
-                                        <label th:text="#{home.seller.configuracion.preConfirmation}"></label>
-                                        <input type="text" th:placeholder="#{home.seller.configuracion.preConfirmation}"
-                                               th:field="*{preConfirmacion}" class="form-control" id="preConfirmation"/>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-12">
                                         <label th:if="${#fields.hasErrors('tipoProcesamiento')}" th:errors="*{tipoProcesamiento}"
                                                class="validation-message"></label>
                                         <label th:text="#{home.seller.configuracion.processTipe}"></label>
