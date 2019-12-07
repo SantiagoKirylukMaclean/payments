@@ -12,17 +12,16 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span th:text="#{home.admin.navbar.customer}"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">registrar</a></li>
-                        <li><a th:href="@{/user}" th:text="#{home.admin.navbar.customer.list}"/></li>
-                        <li><a href="#">Modificar</a></li>
+                        <li><a th:href="@{/admin/restore_bkp}" th:text="#{home.admin.navbar.customer.bkp}"/></li>
+                        <li><a href="#" th:text="#{home.admin.navbar.customer.restore}"/></li>
+                        <li><a href="#" th:text="#{home.admin.navbar.customer.registry}"/></li>
+                        <li><a th:href="@{/admin/users}" th:text="#{home.admin.navbar.customer.list}"/></li>
                     </ul>
                 </li>
-                <li><a th:href="@{/admin/registration}">Registration</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a th:href="@{?lang=es}"><span class="glyphicon glyphicon-globe"></span> <span th:text="#{lang.es}"/></a></li>
                 <li><a th:href="@{?lang=en}"><span class="glyphicon glyphicon-globe"></span> <span th:text="#{lang.en}"/></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> <span th:text="#{navbar.logout}"/></a></li>
             </ul>
         </div>

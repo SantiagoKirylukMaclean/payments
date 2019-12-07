@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service("DefaultSellerService")
 public class DefaultSellerService implements SellerServiceInterface {
@@ -43,6 +44,10 @@ public class DefaultSellerService implements SellerServiceInterface {
 
     public Seller findSellerByUserName(String sellerId) {
         return sellerRepository.findByUsername(sellerId);
+    }
+
+    public List<Seller> findAll(){
+        return sellerRepository.findAll();
     }
 
 }

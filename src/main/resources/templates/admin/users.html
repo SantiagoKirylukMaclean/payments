@@ -10,7 +10,7 @@
 <body>
 <div class="header"></div>
 
-<div th:replace="fragments/header :: nav"></div>
+<div th:replace="fragments/headerAdmin :: nav"></div>
 
 
 <div class="container">
@@ -27,12 +27,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user: ${users}">
-            <td th:text="${user.getUsername()}" />
-            <td th:text="${user.getName()}" />
-            <td th:text="${user.getLastName()}" />
-            <td th:text="${user.getEmail()}" />
-            <td th:text="${user.getActive()}" />
+        <tr th:each="seller: ${sellers}">
+            <td th:text="${seller.getUsername()}" />
+            <td th:text="${seller.getNombre()}" />
+            <td th:text="${seller.getApellido()}" />
+            <td th:text="${seller.getEmail()}" />
+            <td th:text="${seller.getActive()}" />
         </tr>
         </tbody>
     </table>

@@ -96,15 +96,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/users", method = RequestMethod.GET)
-    public ModelAndView AdminCustomerGetUsers(){
-        ModelAndView modelAndView = new ModelAndView();
-        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List<User> users = userService.getUsers();
-        modelAndView.addObject("users", users);
-        modelAndView.setViewName("admin/users");
-        return modelAndView;
-    }
+
 
 
 }
